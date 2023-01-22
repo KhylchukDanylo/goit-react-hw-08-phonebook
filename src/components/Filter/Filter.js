@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateFilter } from '../../redux/filter/filter-slice';
 import { selectFilter } from '../../redux/selectors';
 import { TextField, Box } from '@mui/material';
+import { FilterInput, FilterBox } from './Filter.styled';
 
 export default function Filter() {
   const filter = useSelector(selectFilter);
@@ -11,15 +12,13 @@ export default function Filter() {
   };
 
   return (
-    <Box sx={{ padding: '20px' }}>
-      <TextField
+    <FilterBox>
+      <FilterInput
         type="text"
         value={filter}
         onChange={changeFilter}
-        placeholder="John"
-        variant="outlined"
-        label="Filter contacts by name"
+        placeholder="Filter contacts by name"
       />
-    </Box>
+    </FilterBox>
   );
 }

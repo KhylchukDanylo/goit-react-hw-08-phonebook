@@ -1,16 +1,15 @@
 import * as React from 'react';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
 import { Navigation } from 'components/Navigation/Navigation';
 import { AuthNav } from 'components/AuthNav/AuthNav';
 import { useAuth } from '../../hooks/useAuth';
 import { UserMenu } from 'components/UserMenu/UserMenu';
+import { HeaderBox, Logo } from './Heder.style';
 
 export default function Header() {
   const { isLoggedIn } = useAuth();
   return (
-    <AppBar position="static" sx={{ backgroundColor: 'teal' }}>
-      <Toolbar
+    <HeaderBox>
+      <Logo
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
@@ -19,7 +18,7 @@ export default function Header() {
       >
         <Navigation />
         {isLoggedIn ? <UserMenu /> : <AuthNav />}
-      </Toolbar>
-    </AppBar>
+      </Logo>
+    </HeaderBox>
   );
 }

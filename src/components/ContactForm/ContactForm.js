@@ -1,8 +1,7 @@
 import { useState } from 'react';
-import { Form } from './ContactForm.styled';
+import { Form, FormInput, FormButtom } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contacts-operations';
-import { TextField, Button } from '@mui/material';
 import { selectContacts } from 'redux/selectors';
 
 export default function ContactForm() {
@@ -44,7 +43,7 @@ export default function ContactForm() {
 
   return (
     <Form onSubmit={handleAddContact}>
-      <TextField
+      <FormInput
         value={name}
         onChange={handleChange}
         type="text"
@@ -58,7 +57,7 @@ export default function ContactForm() {
         label="Name"
       />
 
-      <TextField
+      <FormInput
         value={number}
         onChange={handleChange}
         type="tel"
@@ -68,17 +67,15 @@ export default function ContactForm() {
         required
         autoComplete="off"
         placeholder="111-111-1111"
-        label="Number"
-        margin={'normal'}
       />
 
-      <Button
+      <FormButtom
         type="submit"
         size="large"
         sx={{ mt: 3, border: '1px solid black' }}
       >
         Add contact
-      </Button>
+      </FormButtom>
     </Form>
   );
 }

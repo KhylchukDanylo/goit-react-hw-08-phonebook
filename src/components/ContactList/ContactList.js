@@ -5,15 +5,13 @@ import {
 } from 'redux/contacts/contacts-operations';
 import { useEffect } from 'react';
 import { selectContacts, selectFilter } from 'redux/selectors';
+import { CircularProgress } from '@mui/material';
 import {
-  List,
-  ListItem,
-  Avatar,
-  Typography,
-  CircularProgress,
-  IconButton,
-} from '@mui/material';
-import { MdDelete } from 'react-icons/md';
+  ContactButtom,
+  ContactItem,
+  ContactListContact,
+  ContactText,
+} from './ContactList.styled';
 
 export default function ContactList() {
   const dispatch = useDispatch();
@@ -30,45 +28,27 @@ export default function ContactList() {
       contact.name.toLowerCase().includes(normalizedFilter)
     );
   };
-  const getFirstLetter = name => {
-    return name.charAt(0).toUpperCase();
-  };
 
   const filteredContacts = getFilteredContacts();
 
   return (
-    <List sx={{ padding: '20px' }}>
+    <ContactListContact>
       {isLoading && <CircularProgress />}
       {error && <p>{error}</p>}
       {contacts.length > 0 && (
-        <Typography>Total contacts: {contacts.length}</Typography>
+        <ContactText>Total contacts: {contacts.length}</ContactText>
       )}
       {contacts.length > 0 &&
         filteredContacts.map(({ id, name, number }) => (
-          <ListItem
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              maxWidth: 640,
-              mb: 1,
-            }}
-            key={id}
-            divider
-          >
-            <Avatar sx={{ bgcolor: 'purple' }}>{getFirstLetter(name)}</Avatar>
-            <Typography>
+          <ContactItem key={id}>
+            <ContactText>
               {name}:{number}
-            </Typography>
-            <IconButton
-              aria-label="delete"
-              color="secondary"
-              onClick={() => dispatch(deleteContact(id))}
-            >
-              <MdDelete />
-            </IconButton>
-          </ListItem>
+            </ContactText>
+            <ContactButtom onClick={() => dispatch(deleteContact(id))}>
+              Delete
+            </ContactButtom>
+          </ContactItem>
         ))}
-    </List>
+    </ContactListContact>
   );
 }

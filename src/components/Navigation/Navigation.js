@@ -1,5 +1,4 @@
-import { HomeLink, ContactsLink } from './Navigation.styled';
-import { Box, Typography } from '@mui/material';
+import { HomeLink, ContactsLink, Box, NavText } from './Navigation.styled';
 import { useAuth } from 'hooks/useAuth';
 
 export const Navigation = () => {
@@ -8,11 +7,11 @@ export const Navigation = () => {
   return (
     <Box component="nav" sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
       <HomeLink to="/">
-        <Typography variant="h5">PhoneBook</Typography>
+        <NavText variant="h5">PhoneBook</NavText>
       </HomeLink>
       {isLoggedIn && (
         <ContactsLink to="/contacts">
-          <Typography variant="h5">Contacts</Typography>
+          <NavText variant="h5">Contacts</NavText>
         </ContactsLink>
       )}
     </Box>

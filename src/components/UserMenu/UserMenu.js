@@ -1,4 +1,5 @@
-import { Box, Button, Typography, Avatar } from '@mui/material';
+import { Avatar } from '@mui/material';
+import { Box, NameUser, UserButtom } from './UserMenu.styled';
 import { useAuth } from '../../hooks/useAuth';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/auth-operations';
@@ -12,20 +13,12 @@ export const UserMenu = () => {
   const handleLogOut = () => dispatch(logOut());
 
   return (
-    <Box sx={{ display: 'flex', alignItems: 'center' }}>
-      <Typography variant="h6" sx={{ mr: 2 }}>
-        {user.name}
-      </Typography>
+    <Box>
+      <NameUser>{user.name}</NameUser>
       <Avatar sx={{ bgcolor: 'orange', mr: 2 }}>{firstLetter}</Avatar>
-      <Button
-        type="button"
-        variant="contained"
-        color="primary"
-        sx={{ backgroundColor: 'orange', fontWeight: 700, color: 'black' }}
-        onClick={handleLogOut}
-      >
+      <UserButtom type="button" onClick={handleLogOut}>
         Logout
-      </Button>
+      </UserButtom>
     </Box>
   );
 };
