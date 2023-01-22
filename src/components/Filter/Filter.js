@@ -1,7 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { updateFilter } from '../../redux/filter/filter-slice';
 import { selectFilter } from '../../redux/selectors';
-import { TextField, Box } from '@mui/material';
 import { FilterInput, FilterBox } from './Filter.styled';
 
 export default function Filter() {
