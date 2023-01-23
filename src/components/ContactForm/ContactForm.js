@@ -3,6 +3,7 @@ import { Form, FormInput, FormButtom } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/contacts-operations';
 import { selectContacts } from 'redux/selectors';
+import Notiflix from 'notiflix';
 
 export default function ContactForm() {
   const [name, setName] = useState('');
@@ -34,6 +35,9 @@ export default function ContactForm() {
   const handleAddContact = e => {
     e.preventDefault();
     if (contacts.find(contact => contact.name === name.trim())) {
+      Notiflix.Notify.warning('This name is taken!', {
+        position: 'center-top',
+      });
       return;
     }
     dispatch(addContact({ name, number }));
