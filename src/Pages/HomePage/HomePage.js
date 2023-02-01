@@ -1,14 +1,16 @@
-import { Typography } from '@mui/material';
+import { useAuth } from 'hooks/useAuth';
+import { TextHome, InstHome, DivHome } from './HomePage.styled';
 
 export default function HomePage() {
+  const { isLoggedIn } = useAuth();
+
   return (
-    <Typography
-      variant="h2"
-      component="h1"
-      padding="50px 24px 0"
-      textAlign="center"
-    >
-      Welcome to page contactsApp
-    </Typography>
+    <DivHome>
+      <TextHome>Welcome to page contactsApp</TextHome>
+      {!isLoggedIn && (
+        <InstHome>To start work, you need to register or log in.</InstHome>
+      )}
+      {isLoggedIn && <InstHome>Thank you for using our site.</InstHome>}
+    </DivHome>
   );
 }
